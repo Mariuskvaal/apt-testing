@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Import useNavigate for redirection
 import axios from "axios";
 import "./Login.css";
 
 const Login = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [formData, setFormData] = useState({ email: "" });
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -20,7 +21,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage("");
-
+  
     try {
       const response = await axios.post(
         "https://v2.api.noroff.dev/auth/login",
@@ -31,13 +32,21 @@ const Login = () => {
           },
         }
       );
-      setMessage("Login successful!");
-      console.log("Response:", response.data);
+  
+      const { accessToken, name } = response.data.data; // Correctly extract name and accessToken
+  
+      // Save accessToken and name in localStorage
+      localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("username", name);
+  
+      // Redirect to the user's profile
+      navigate(`/profile/${name}`);
     } catch (error) {
       setMessage("Login failed. Please try again.");
-      console.error("Error:", error);
+      console.error("Error during login:", error.response?.data || error);
     }
   };
+  
 
   return (
     <>
@@ -77,7 +86,7 @@ const Login = () => {
             placeholder="Email"
             required
           />
-                    <label htmlFor="email">Email</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
@@ -98,3 +107,4 @@ const Login = () => {
 };
 
 export default Login;
+
