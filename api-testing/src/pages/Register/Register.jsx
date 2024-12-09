@@ -9,7 +9,7 @@ const Register = () => {
 
   // State for form data
   const [formData, setFormData] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
   });
@@ -69,6 +69,9 @@ const Register = () => {
             <Link to="/Register">Register</Link>
           </li>
           <li>
+            <Link to="/Login">Login</Link>
+          </li>
+          <li>
             <Link to="/Profile">Profile</Link>
           </li>
         </ul>
@@ -79,14 +82,14 @@ const Register = () => {
         <h1>Register</h1>
         <form className="register-form" onSubmit={handleSubmit}>
           {/* Username Input */}
-          <label htmlFor="username">Username:</label>
+          <label htmlFor="name">Name:</label>
           <input
             type="text"
-            id="username"
-            name="username"
-            value={formData.username}
+            id="name"
+            name="name"
+            value={formData.name}
             onChange={handleChange}
-            placeholder="Enter your username"
+            placeholder="Enter your name"
             required
           />
 
