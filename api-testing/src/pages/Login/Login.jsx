@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; // Import useNavigate for redirection
 import axios from "axios";
 import "./Login.css";
+import Navbar from "../../components/Nav/Nav"
 
 const Login = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -51,26 +52,7 @@ const Login = () => {
   return (
     <>
       {/* Navigation Bar */}
-      <nav className="navbar">
-        <div className="navbar-logo">MyLogo</div>
-        <button className="navbar-toggle" onClick={toggleMenu}>
-          {isMenuOpen ? "X" : "☰"}
-        </button>
-        <ul className={`navbar-links ${isMenuOpen ? "active" : ""}`}>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/Register">Register</Link>
-          </li>
-          <li>
-            <Link to="/Login">Login</Link>
-          </li>
-          <li>
-            <Link to="/Profile">Profile</Link>
-          </li>
-        </ul>
-      </nav>
+      <Navbar />
 
       {/* Login Form */}
       <div className="login-page">

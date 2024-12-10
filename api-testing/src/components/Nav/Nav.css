@@ -1,0 +1,22 @@
+.profile-link {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+  }
+  
+  .profile-link svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .navbar-links .profile-link:hover {
+    color: #007bff; /* Optional: Add hover color for the icon */
+  }
+  
+  
+  
+  
+  

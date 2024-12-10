@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import "./Register.css";
+import Navbar from "../../components/Nav/Nav"; // Adjust the path based on your project structure
 
 const Register = () => {
-  // State for navigation menu toggle
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   // State for form data
   const [formData, setFormData] = useState({
     name: "",
@@ -17,21 +14,16 @@ const Register = () => {
   // State for success/error messages
   const [message, setMessage] = useState("");
 
-  // Toggle navigation menu
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
   // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value }); // Update specific form input
+    setFormData({ ...formData, [name]: value });
   };
 
   // Handle form submission
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent default form submission
-    setMessage(""); // Clear previous messages
+    e.preventDefault();
+    setMessage("");
 
     try {
       const response = await axios.post(
@@ -43,45 +35,23 @@ const Register = () => {
           },
         }
       );
-      // Handle success
       setMessage("Registration successful!");
       console.log("Response:", response.data);
     } catch (error) {
-      // Handle error
       setMessage("Registration failed. Please try again.");
       console.error("Error:", error);
     }
   };
 
   return (
-    <div>
+    <>
       {/* Navigation Bar */}
-      <nav className="navbar">
-        <div className="navbar-logo">MyLogo</div>
-        <button className="navbar-toggle" onClick={toggleMenu}>
-          {isMenuOpen ? "X" : "☰"}
-        </button>
-        <ul className={`navbar-links ${isMenuOpen ? "active" : ""}`}>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/Register">Register</Link>
-          </li>
-          <li>
-            <Link to="/Login">Login</Link>
-          </li>
-          <li>
-            <Link to="/Profile">Profile</Link>
-          </li>
-        </ul>
-      </nav>
+      <Navbar />
 
       {/* Form Section */}
       <div className="register-page">
         <h1>Register</h1>
         <form className="register-form" onSubmit={handleSubmit}>
-          {/* Username Input */}
           <label htmlFor="name">Name:</label>
           <input
             type="text"
@@ -93,7 +63,6 @@ const Register = () => {
             required
           />
 
-          {/* Email Input */}
           <label htmlFor="email">Email:</label>
           <input
             type="email"
@@ -105,7 +74,6 @@ const Register = () => {
             required
           />
 
-          {/* Password Input */}
           <label htmlFor="password">Password:</label>
           <input
             type="password"
@@ -117,15 +85,14 @@ const Register = () => {
             required
           />
 
-          {/* Submit Button */}
           <button type="submit">Register</button>
         </form>
 
-        {/* Success/Error Message */}
         {message && <p className="message">{message}</p>}
       </div>
-    </div>
+    </>
   );
 };
 
 export default Register;
+
