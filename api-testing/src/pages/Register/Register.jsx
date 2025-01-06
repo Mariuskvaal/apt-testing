@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./Register.css";
-import Navbar from "../../components/Nav/Nav"; // Adjust the path based on your project structure
+import Navbar from "../../components/Nav/Nav";
 
 const Register = () => {
   // State for form data
@@ -23,7 +23,7 @@ const Register = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage("");
+    setMessage(""); // Reset message
 
     try {
       const response = await axios.post(
@@ -38,7 +38,12 @@ const Register = () => {
       setMessage("Registration successful!");
       console.log("Response:", response.data);
     } catch (error) {
-      setMessage("Registration failed. Please try again.");
+      // Check if the error response contains a specific message
+      if (error.response && error.response.data && error.response.data.errors) {
+        setMessage(error.response.data.errors[0].message); // Set the server error message
+      } else {
+        setMessage("Registration failed. Please try again.");
+      }
       console.error("Error:", error);
     }
   };
@@ -88,6 +93,7 @@ const Register = () => {
           <button type="submit">Register</button>
         </form>
 
+        {/* Display Message */}
         {message && <p className="message">{message}</p>}
       </div>
     </>
@@ -95,4 +101,5 @@ const Register = () => {
 };
 
 export default Register;
+
 

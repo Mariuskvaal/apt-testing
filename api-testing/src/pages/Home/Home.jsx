@@ -1,41 +1,19 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
+import Navbar from "../../components/Nav/Nav"; // Adjust the path based on your file structure
 import "./Home.css";
 
 const Home = () => {
+  return (
+    <>
+      {/* Include the Navbar */}
+      <Navbar />
 
-const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-};
-return (
-    <div>
-        <nav className="navbar">
-        <div className="navbar-logo">MyLogo</div>
-        <button className="navbar-toggle" onClick={toggleMenu}>
-          {isMenuOpen ? "X" : "☰"}
-        </button>
-        <ul className={`navbar-links ${isMenuOpen ? "active" : ""}`}>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/Register">Register</Link>
-          </li>
-          <li>
-            <Link to="/Login">Login</Link>
-          </li>
-          <li>
-            <Link to="/Profile">Profile</Link>
-          </li>
-        </ul>
-      </nav>
-
-      <div className="h1">
-        <h1>Homepage </h1>
+      {/* Home Page Content */}
+      <div className="home-page">
+        <h1>Homepage</h1>
+        <p>Welcome to Holidaze, your go-to accommodation booking site!</p>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; // Import useNavigate for redirection
 import axios from "axios";
-import "./Login.css";
+import "../Register/Register.css";
 import Navbar from "../../components/Nav/Nav"
 
 const Login = () => {
