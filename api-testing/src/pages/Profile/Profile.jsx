@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./Profile.css";
 import Navbar from "../../components/Nav/Nav";
+import BookingsPopup from "../../components/Profile/BookingsPopup"; // Use combined file
+import "./Profile.css";
 
 const Profile = () => {
-  const { name } = useParams(); // Retrieve the username from the URL
-  const navigate = useNavigate(); // For redirecting if token is invalid
+  const { name } = useParams();
+  const navigate = useNavigate();
   const [profileData, setProfileData] = useState(null);
-  const [showPopup, setShowPopup] = useState(false); // State to control the popup visibility
-  const [avatarUrl, setAvatarUrl] = useState(""); // State for avatar URL input
-  const [avatarAlt, setAvatarAlt] = useState(""); // State for avatar alt input
-  const [updateMessage, setUpdateMessage] = useState(""); // Message for update feedback
-  const accessToken = localStorage.getItem("accessToken"); // Get accessToken from localStorage
-  const apiKey = process.env.REACT_APP_API_KEY; // Retrieve the API key from .env
+  const [showPopup, setShowPopup] = useState(false); // State for controlling the bookings popup
+  const [avatarPopup, setAvatarPopup] = useState(false); // State for avatar update popup
+  const [avatarUrl, setAvatarUrl] = useState("");
+  const [avatarAlt, setAvatarAlt] = useState("");
+  const [updateMessage, setUpdateMessage] = useState("");
+  const accessToken = localStorage.getItem("accessToken");
+  const apiKey = process.env.REACT_APP_API_KEY;
 
   useEffect(() => {
     const fetchProfile = async () => {
       if (!accessToken) {
-        console.error("No access token found. Redirecting to login.");
         navigate("/login");
         return;
       }
@@ -28,17 +29,16 @@ const Profile = () => {
           `https://v2.api.noroff.dev/holidaze/profiles/${name}`,
           {
             headers: {
-              Authorization: `Bearer ${accessToken}`, // Add the correct Authorization header
-              "X-Noroff-API-Key": apiKey, // Add the API key
+              Authorization: `Bearer ${accessToken}`,
+              "X-Noroff-API-Key": apiKey,
             },
           }
         );
-        setProfileData(response.data.data); // Update state with profile data
+        setProfileData(response.data.data);
       } catch (error) {
         console.error("Error fetching profile:", error.response?.data || error);
         if (error.response?.status === 401) {
-          // Redirect to login on invalid token
-          localStorage.removeItem("accessToken"); // Clear invalid token
+          localStorage.removeItem("accessToken");
           navigate("/login");
         }
       }
@@ -49,12 +49,12 @@ const Profile = () => {
 
   // Logout handler
   const handleLogout = () => {
-    localStorage.removeItem("accessToken"); // Clear accessToken from localStorage
-    localStorage.removeItem("username"); // Clear username from localStorage
-    navigate("/login"); // Redirect to the login page
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("username");
+    navigate("/login");
   };
 
-  // Update avatar handler
+  // Avatar update handler
   const handleUpdateAvatar = async () => {
     if (!avatarUrl.trim()) {
       setUpdateMessage("Avatar URL cannot be empty.");
@@ -67,7 +67,7 @@ const Profile = () => {
         {
           avatar: {
             url: avatarUrl,
-            alt: avatarAlt || "User Avatar", // Default alt text if none provided
+            alt: avatarAlt || "User Avatar",
           },
         },
         {
@@ -78,9 +78,9 @@ const Profile = () => {
           },
         }
       );
-      setProfileData(response.data.data); // Update profile data with the new avatar
+      setProfileData(response.data.data);
       setUpdateMessage("Avatar updated successfully!");
-      setShowPopup(false); // Close the popup after successful update
+      setAvatarPopup(false);
     } catch (error) {
       console.error("Error updating avatar:", error.response?.data || error);
       setUpdateMessage("Failed to update avatar. Please try again.");
@@ -97,7 +97,7 @@ const Profile = () => {
           <div className="profile-details">
             <p>Name: {profileData.name}</p>
             <p>Email: {profileData.email}</p>
-            <p>Bio: {profileData.bio}</p>
+            <p>Bio: {profileData.bio || "No bio available."}</p>
             {profileData.avatar && (
               <div>
                 <p>Avatar:</p>
@@ -111,26 +111,32 @@ const Profile = () => {
               </div>
             )}
 
-            {/* Logout Button */}
+            {/* Buttons */}
+            <button className="view-bookings-button" onClick={() => setShowPopup(true)}>View Bookings</button>
+
+            <button className="update-avatar-button" onClick={() => setAvatarPopup(true)}>Update Avatar</button>
+            
             <button className="logout-button" onClick={handleLogout}>
               Logout
             </button>
-
-            {/* Update Avatar Button */}
-            <button
-              className="update-avatar-button"
-              onClick={() => setShowPopup(true)}
-            >
-              Update Avatar
-            </button>
           </div>
         ) : (
-          <p className="loading-message">Loading profile...</p>
+          <p>Loading profile...</p>
         )}
       </div>
 
-      {/* Popup Window */}
+      {/* Bookings Popup */}
       {showPopup && (
+        <BookingsPopup
+          username={name}
+          accessToken={accessToken}
+          apiKey={apiKey}
+          onClose={() => setShowPopup(false)}
+        />
+      )}
+
+      {/* Avatar Popup */}
+      {avatarPopup && (
         <div className="popup">
           <div className="popup-content">
             <h3>Update Avatar</h3>
@@ -151,7 +157,7 @@ const Profile = () => {
             <button onClick={handleUpdateAvatar} className="confirm-update-button">
               Update Avatar
             </button>
-            <button onClick={() => setShowPopup(false)} className="close-popup-button">
+            <button onClick={() => setAvatarPopup(false)} className="close-popup-button">
               Cancel
             </button>
             {updateMessage && <p className="update-message">{updateMessage}</p>}
@@ -163,6 +169,7 @@ const Profile = () => {
 };
 
 export default Profile;
+
 
 
 

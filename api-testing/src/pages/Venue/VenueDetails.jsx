@@ -3,17 +3,22 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../../components/Nav/Nav";
 import "./VenueDetails.css"; // Import the new CSS file
+import BookingForm from "../../components/BookingForm/BookingForm";
+import BookingCalendar from "../../components/BookingCalendar/BookingCalendar"; //
 
 const VenueDetails = () => {
   const { id } = useParams(); // Get the venue ID from the URL
   const [venue, setVenue] = useState(null); // State to store venue data
   const [error, setError] = useState(null); // State for error handling
+  const [showGallery, setShowGallery] = useState(false); // State to handle modal visibility
 
   useEffect(() => {
     const fetchVenue = async () => {
       try {
-        const response = await axios.get(`https://v2.api.noroff.dev/holidaze/venues/${id}`);
-        setVenue(response.data); // Store the venue data
+        const response = await axios.get(
+          `https://v2.api.noroff.dev/holidaze/venues/${id}?_bookings=true`
+        );
+        setVenue(response.data); // Store the venue data, including bookings
       } catch (error) {
         setError("Could not fetch venue details. Please try again later.");
         console.error("Error fetching venue details:", error);
@@ -31,9 +36,7 @@ const VenueDetails = () => {
     return <p>Loading...</p>; // Display loading message while data is being fetched
   }
 
-  const { name, description, media, price, maxGuests, rating, meta, location, _count } = venue;
-
-  const Info = venue.data;
+  const Info = venue.data; // Correctly access the data property of the venue
 
   return (
     <>
@@ -41,21 +44,45 @@ const VenueDetails = () => {
 
       {console.log(Info)}
 
-        {Info.media && Info.media.length > 0 && (
-  <div className="venue-images">
-    {Info.media.map((image, index) => (
-      <img
-        key={index} // Assign a unique key to each image
-        src={image.url} // Correctly access the URL of the image
-        alt={image.alt || "Venue Image"} // Correctly access the alt text of the image
-        className="venue-image"
-      />
-    ))}
-  </div>
-  
-)}
+      {/* Main image with "View All Images" button */}
+      {Info.media && Info.media.length > 0 && (
+        <div className="main-image-container">
+          <img
+            src={Info.media[0].url}
+            alt={Info.media[0].alt || "Main Venue Image"}
+            className="main-image"
+          />
+          {Info.media.length > 1 && (
+            <button className="view-all-button" onClick={() => setShowGallery(true)}>
+              View All Images
+            </button>
+          )}
+        </div>
+      )}
 
-<div className="venue-details">
+      {/* Modal for all images */}
+      {showGallery && (
+        <div className="image-modal">
+          <div className="modal-overlay" onClick={() => setShowGallery(false)}></div>
+          <div className="modal-content">
+            <button className="close-button" onClick={() => setShowGallery(false)}>
+              &times;
+            </button>
+            <div className="modal-images">
+              {Info.media.map((image, index) => (
+                <img
+                  key={index}
+                  src={image.url}
+                  alt={image.alt || `Venue Image ${index + 1}`}
+                  className="modal-image"
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      <div className="venue-details">
         <div className="venue-header">
           <h1>{Info.name || "Unnamed Venue"}</h1>
           <p className="venue-description">{Info.description || "No description available."}</p>
@@ -86,10 +113,18 @@ const VenueDetails = () => {
             <p><strong>Pets Allowed:</strong> {Info.meta.pets ? "Yes" : "No"}</p>
           </div>
         </div>
+
+        <BookingCalendar bookings={Info.bookings || []} />
+
+
+        {/* Booking Form */}
+        <BookingForm venueId={id} maxGuests={Info.maxGuests} />
       </div>
     </>
   );
 };
 
 export default VenueDetails;
+
+
 

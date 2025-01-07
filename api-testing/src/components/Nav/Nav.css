@@ -13,6 +13,7 @@ body {
   background-color: #333;
   color: white;
   position: relative; /* To position the search bar below */
+  z-index: 100;
 }
 
 .navbar-logo {
@@ -154,11 +155,11 @@ body {
 
   .navbar-links.active {
     display: flex;
+    align-items: center;
   }
 
   .navbar-links li {
     margin: 10px 0;
-    text-align: center;
   }
 
   .search-bar input {

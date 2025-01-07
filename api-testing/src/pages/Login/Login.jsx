@@ -24,6 +24,7 @@ const Login = () => {
     setMessage("");
   
     try {
+      // Login API Call
       const response = await axios.post(
         "https://v2.api.noroff.dev/auth/login",
         formData,
@@ -34,13 +35,27 @@ const Login = () => {
         }
       );
   
-      const { accessToken, name } = response.data.data; // Correctly extract name and accessToken
+      const { accessToken, name } = response.data.data;
   
-      // Save accessToken and name in localStorage
+      // Save accessToken and username
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("username", name);
   
-      // Redirect to the user's profile
+      // Check if an API Key is required
+      const apiKeyResponse = await axios.post(
+        "https://v2.api.noroff.dev/auth/create-api-key",
+        {}, // No body required
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      );
+  
+      const apiKey = apiKeyResponse.data.data.key;
+      localStorage.setItem("apiKey", apiKey); // Save the API Key in localStorage
+  
+      // Redirect to the profile page
       navigate(`/profile/${name}`);
     } catch (error) {
       setMessage("Login failed. Please try again.");
