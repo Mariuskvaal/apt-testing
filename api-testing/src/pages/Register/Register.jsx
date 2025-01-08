@@ -9,6 +9,7 @@ const Register = () => {
     name: "",
     email: "",
     password: "",
+    venueManager: false, // Add venueManager flag
   });
 
   // State for success/error messages
@@ -20,33 +21,50 @@ const Register = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+  // Handle checkbox toggle
+  const handleCheckboxChange = (e) => {
+    setFormData({ ...formData, venueManager: e.target.checked });
+  };
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     setMessage(""); // Reset message
-
+  
     try {
       const response = await axios.post(
         "https://v2.api.noroff.dev/auth/register",
-        formData,
+        {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+          venueManager: formData.venueManager, // Include venueManager flag
+        },
         {
           headers: {
             "Content-Type": "application/json",
           },
         }
       );
+  
+      console.log("Registration Response:", response.data);
       setMessage("Registration successful!");
-      console.log("Response:", response.data);
+  
+      // Save the venueManager flag to localStorage
+      localStorage.setItem("venueManager", formData.venueManager);
+  
     } catch (error) {
-      // Check if the error response contains a specific message
       if (error.response && error.response.data && error.response.data.errors) {
-        setMessage(error.response.data.errors[0].message); // Set the server error message
+        setMessage(error.response.data.errors[0].message);
       } else {
         setMessage("Registration failed. Please try again.");
       }
       console.error("Error:", error);
     }
   };
+  
+  
+  
 
   return (
     <>
@@ -90,6 +108,20 @@ const Register = () => {
             required
           />
 
+          {/* Venue Manager Checkbox */}
+          <div className="checkbox-container">
+            <label htmlFor="venueManager">
+              <input
+                type="checkbox"
+                id="venueManager"
+                name="venueManager"
+                checked={formData.venueManager}
+                onChange={handleCheckboxChange}
+              />
+              Register as a Venue Manager
+            </label>
+          </div>
+
           <button type="submit">Register</button>
         </form>
 
@@ -101,5 +133,6 @@ const Register = () => {
 };
 
 export default Register;
+
 
 

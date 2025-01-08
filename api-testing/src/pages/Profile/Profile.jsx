@@ -17,6 +17,13 @@ const Profile = () => {
   const accessToken = localStorage.getItem("accessToken");
   const apiKey = process.env.REACT_APP_API_KEY;
 
+  // Retrieve venueManager flag from localStorage
+  const venueManager = JSON.parse(localStorage.getItem("venueManager")) || false;
+  console.log("Is Venue Manager:", venueManager);
+  
+  
+
+
   useEffect(() => {
     const fetchProfile = async () => {
       if (!accessToken) {
@@ -51,6 +58,7 @@ const Profile = () => {
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("username");
+    localStorage.removeItem("venueManager"); // Optional: clear venueManager on logout
     navigate("/login");
   };
 
@@ -112,13 +120,28 @@ const Profile = () => {
             )}
 
             {/* Buttons */}
-            <button className="view-bookings-button" onClick={() => setShowPopup(true)}>View Bookings</button>
+            <button className="view-bookings-button" onClick={() => setShowPopup(true)}>
+              View Bookings
+            </button>
 
-            <button className="update-avatar-button" onClick={() => setAvatarPopup(true)}>Update Avatar</button>
+            <button className="update-avatar-button" onClick={() => setAvatarPopup(true)}>
+              Update Avatar
+            </button>
             
             <button className="logout-button" onClick={handleLogout}>
               Logout
             </button>
+
+            {/* Conditional Rendering for Venue Manager */}
+            {venueManager && (
+              <div>
+                <h3>Venue Manager Options</h3>
+                <button>Create Venue</button>
+                <button>Update Venue</button>
+                <button>Delete Venue</button>
+                <button>View Venue Bookings</button>
+              </div>
+            )}
           </div>
         ) : (
           <p>Loading profile...</p>
@@ -169,6 +192,7 @@ const Profile = () => {
 };
 
 export default Profile;
+
 
 
 

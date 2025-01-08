@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom"; // Import useNavigate for redirection
 import axios from "axios";
 import "../Register/Register.css";
-import Navbar from "../../components/Nav/Nav"
+import Navbar from "../../components/Nav/Nav";
 
 const Login = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,8 +21,8 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage("");
-  
+    setMessage(""); // Reset message state
+
     try {
       // Login API Call
       const response = await axios.post(
@@ -34,35 +34,38 @@ const Login = () => {
           },
         }
       );
-  
-      const { accessToken, name } = response.data.data;
-  
-      // Save accessToken and username
+
+      console.log("Login Response:", response.data);
+
+      // Extract response data
+      const { accessToken, name, venueManager } = response.data.data;
+
+      // Save response data in localStorage
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("username", name);
-  
-      // Check if an API Key is required
+      localStorage.setItem("venueManager", JSON.stringify(venueManager || false)); // Ensure valid JSON format
+
+      // Fetch API Key (if required)
       const apiKeyResponse = await axios.post(
         "https://v2.api.noroff.dev/auth/create-api-key",
-        {}, // No body required
+        {}, // Empty body
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
           },
         }
       );
-  
+
       const apiKey = apiKeyResponse.data.data.key;
-      localStorage.setItem("apiKey", apiKey); // Save the API Key in localStorage
-  
-      // Redirect to the profile page
+      localStorage.setItem("apiKey", apiKey); // Save API key in localStorage
+
+      // Redirect to profile page
       navigate(`/profile/${name}`);
     } catch (error) {
       setMessage("Login failed. Please try again.");
       console.error("Error during login:", error.response?.data || error);
     }
   };
-  
 
   return (
     <>
@@ -104,4 +107,6 @@ const Login = () => {
 };
 
 export default Login;
+
+
 
