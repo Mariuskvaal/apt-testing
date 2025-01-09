@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../../components/Nav/Nav";
 import BookingsPopup from "../../components/Profile/BookingsPopup"; // Use combined file
+import CreateVenuePage from "../../components/CreateVenuePopup/CreateVenuePage"
 import "./Profile.css";
 
 const Profile = () => {
@@ -59,7 +60,7 @@ const Profile = () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("username");
     localStorage.removeItem("venueManager"); // Optional: clear venueManager on logout
-    navigate("/login");
+    navigate("/login");  
   };
 
   // Avatar update handler
@@ -136,10 +137,8 @@ const Profile = () => {
             {venueManager && (
               <div>
                 <h3>Venue Manager Options</h3>
-                <button>Create Venue</button>
-                <button>Update Venue</button>
-                <button>Delete Venue</button>
-                <button>View Venue Bookings</button>
+                <button onClick={() => navigate("/create-venue")}>Create Venue</button>
+                <button onClick={() => navigate(`/my-venues`)}>View Venues I Have Created</button>
               </div>
             )}
           </div>

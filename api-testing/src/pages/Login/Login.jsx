@@ -43,7 +43,6 @@ const Login = () => {
       // Save response data in localStorage
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("username", name);
-      localStorage.setItem("venueManager", JSON.stringify(venueManager || false)); // Ensure valid JSON format
 
       // Fetch API Key (if required)
       const apiKeyResponse = await axios.post(
