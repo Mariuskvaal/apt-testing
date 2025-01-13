@@ -5,7 +5,7 @@ const HeroSection = () => {
   return (
     <div className="hero-section">
       <div className="hero-overlay">
-        <h1>Welcome to Holidaze</h1>
+        <h1>Welcome to</h1>
         <p>Find the perfect venue for your next adventure.</p>
       </div>
     </div>
