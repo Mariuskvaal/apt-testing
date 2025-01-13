@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/Nav/Nav";
 import axios from "axios";
 import "./Home.css";
+import HeroSection from "../../components/HeroSection/HeroSection";
 
 const Home = () => {
   const [venues, setVenues] = useState([]); // State for venue data
@@ -51,6 +52,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
+      <HeroSection />
 
       <div className="home-page">
         <h1>Explore Venues</h1>

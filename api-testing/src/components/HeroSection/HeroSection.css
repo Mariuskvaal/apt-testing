@@ -1,0 +1,30 @@
+.hero-section {
+    position: relative;
+    background-image: url('https://www.archivibe.com/wp-content/uploads/2021/04/PAN-Treettop-Photo-Fredrik-Bye-DJI_0050-34-1.jpg'); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+    height: 80vh; /* Adjust height as needed */
+    display: flex;
+    justify-content: center;
+    align-items: self-end;
+    color: #fff;
+  }
+  
+  .hero-overlay {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 80%); /* Semi-transparent overlay */
+    padding: 20px;
+    border-radius: 8px;
+    margin: 5%;
+  }
+  
+  .hero-section h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  
+  .hero-section p {
+    font-size: 1.5rem;
+    margin-top: 0;
+  }
+  
