@@ -1,9 +1,15 @@
+.Home-Page-Hero{
+  display: flex;
+  flex-direction: column;
+}
+
+
 .hero-section {
     position: relative;
-    background-image: url('https://www.archivibe.com/wp-content/uploads/2021/04/PAN-Treettop-Photo-Fredrik-Bye-DJI_0050-34-1.jpg'); /* Replace with your image URL */
+    background-image: url('../../Images/Trehytte\ i\ vinter.jpg'); /* Replace with your image URL */
     background-size: cover;
     background-position: center;
-    height: 80vh; /* Adjust height as needed */
+    height: 90vh; /* Adjust height as needed */
     display: flex;
     justify-content: center;
     align-items: self-end;
@@ -27,4 +33,42 @@
     font-size: 1.5rem;
     margin-top: 0;
   }
+
+  .hero-search-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .hero-search-input {
+    width: 80%;
+    max-width: 400px;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .hero-search-results {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 200px; /* Set a max height and make it scrollable */
+    overflow-y: auto;
+  }
+  
+  .hero-search-result-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s ease;
+  }
+  
+  .hero-search-result-item:last-child {
+    border-bottom: none;
+  }
+  
+  .hero-search-result-item:hover {
+    background-color: #f0f0f0;
+  }
+  
   

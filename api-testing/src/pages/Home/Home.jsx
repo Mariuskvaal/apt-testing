@@ -4,6 +4,7 @@ import Navbar from "../../components/Nav/Nav";
 import axios from "axios";
 import "./Home.css";
 import HeroSection from "../../components/HeroSection/HeroSection";
+import SearchBar from "../../components/SearchBar.jsx/SearchBar";
 
 const Home = () => {
   const [venues, setVenues] = useState([]); // State for venue data
@@ -51,11 +52,10 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
       <HeroSection />
-
+<h1>Explore Venues</h1>
       <div className="home-page">
-        <h1>Explore Venues</h1>
+        
 
         {/* Sorting Controls */}
         <div className="sorting-container">

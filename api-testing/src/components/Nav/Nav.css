@@ -4,17 +4,24 @@ body {
   font-family: Arial, sans-serif;
 }
 
+
+
 /* Navbar Styles */
 .navbar {
+  position: absolute; /* Makes the navbar overlay other elements */
+  top: 0;
+  left: 0;
+  width: 100%; /* Make it span the full width */
+  z-index: 10; /* Ensure it appears on top of other elements */
+  background: transparent; /* Optional: Make it transparent or semi-transparent */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #333;
-  color: white;
-  position: relative; /* To position the search bar below */
-  z-index: 100;
+  padding: 10px 20px; /* Adjust padding as needed */
+  color: white; /* For better visibility on dark backgrounds */
 }
+
+
 
 .navbar-logo {
   font-size: 1.5rem;
@@ -45,11 +52,12 @@ body {
   text-decoration: none;
   color: white;
   font-size: 1rem;
+  font-weight: 600;
   transition: color 0.3s ease;
 }
 
 .navbar-links a:hover {
-  color: #00bcd4;
+  color: #ff385c;
 }
 
 /* Icon Buttons */
