@@ -5,12 +5,13 @@
   
   .search-input {
     width: 100%;
-    max-width: 400px;
+    max-width: 300px;
     padding: 10px;
     font-size: 1rem;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
-  }
+    border-radius: 10px;
+}
   
   .search-results {
     position: absolute;
@@ -40,4 +41,18 @@
   .search-result-item:hover {
     background-color: #f0f0f0;
   }
+
+  .search-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #0056b3;
+}
   
