@@ -1,58 +1,58 @@
-.search-container {
-    position: relative;
-    margin-top: 10px;
-  }
-  
-  .search-input {
-    width: 100%;
-    max-width: 300px;
-    padding: 10px;
-    font-size: 1rem;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-}
-  
-  .search-results {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    max-width: 400px;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 5px;
-    list-style: none;
-    padding: 0;
-    z-index: 10;
-  }
-  
-  .search-result-item {
-    padding: 10px;
-    cursor: pointer;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .search-result-item:last-child {
-    border-bottom: none;
-  }
-  
-  .search-result-item:hover {
-    background-color: #f0f0f0;
-  }
-
-  .search-button {
-    padding: 10px 20px;
-    font-size: 1rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
+.hero-search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  width: 100vh;
 }
 
-.search-button:hover {
-    background-color: #0056b3;
+.hero-search-bar {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 1rem 2rem;
+  border-radius: 40px;
+  box-shadow: 10px 10px 10px rgb(109 75 75);
+  margin-bottom: 10rem;
+  width: 70%;
 }
+
+.hero-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  border-radius: 40px;
+}
+
+.hero-search-button {
+  background-color: #f44336; /* Red color matching the button in the image */
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  margin-left: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3rem;
+  width: 3rem;
+}
+
+.hero-search-button:hover {
+  background-color: #d32f2f; /* Slightly darker red for hover effect */
+}
+
+.hero-search-button:focus {
+  outline: none;
+}
+
+.hero-search-input::placeholder {
+  color: #ccc;
+  font-size: 1rem;
+}
+
   

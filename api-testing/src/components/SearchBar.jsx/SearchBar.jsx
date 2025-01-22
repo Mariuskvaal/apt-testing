@@ -1,5 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./SearchBar.css";
+
+
+
 
 const SearchBar = () => {
     const [searchQuery, setSearchQuery] = useState("");
@@ -17,9 +21,9 @@ const SearchBar = () => {
     };
 
     return (
-        <div className="search-container">
+        <div className="hero-search-container">
             <form
-                className="search-bar"
+                className="hero-search-bar"
                 onSubmit={(e) => {
                     e.preventDefault();
                     handleSearchSubmit();
@@ -30,11 +34,12 @@ const SearchBar = () => {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search Venues"
-                    className="search-input"
+                    className="hero-search-input"
                 />
-                <button type="submit" className="search-button">
-                    Search
-                </button>
+                <button type="submit" className="hero-search-button">
+    <i className="fas fa-search"></i> {/* Font Awesome search icon */}
+</button>
+
             </form>
         </div>
     );

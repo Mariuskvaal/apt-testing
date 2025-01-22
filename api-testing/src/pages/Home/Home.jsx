@@ -18,6 +18,9 @@ const Home = () => {
       try {
         const response = await axios.get("https://v2.api.noroff.dev/holidaze/venues");
         setVenues(response.data.data); // Store the venue data
+
+        console.log(response.data.data);
+
         setSortedVenues(response.data.data); // Display the default order from the server
       } catch (error) {
         console.error("Error fetching venues:", error);
@@ -54,11 +57,11 @@ const Home = () => {
     <>
       <HeroSection />
 <h1>Explore Venues</h1>
-      <div className="home-page">
+      <div className="home-home-page">
         
 
         {/* Sorting Controls */}
-        <div className="sorting-container">
+        <div className="home-sorting-container">
           <label htmlFor="sort">Sort by: </label>
           <select
             id="sort"
@@ -87,26 +90,75 @@ const Home = () => {
         </div>
 
         {/* Venue Cards */}
-        <div className="venue-grid">
-          {sortedVenues.map((venue) => (
-            <div key={venue.id} className="venue-card">
-              <Link to={`/venues/${venue.id}`}>
-                <div className="venue-image-container">
-                  <img
-                    src={venue.media[0]?.url || "https://via.placeholder.com/150"}
-                    alt={venue.media[0]?.alt || "Venue Image"}
-                    className="venue-image"
-                  />
-                </div>
-                <div className="venue-card-details">
-                  <h3>{venue.name}</h3>
-                  <p className="venue-price">From {venue.price} NOK/night</p>
-                  <p className="venue-rating">⭐ {venue.rating}</p>
-                </div>
-              </Link>
-            </div>
-          ))}
+        <div className="home-venue-grid">
+  {sortedVenues.map((venue) => (
+    <div key={venue.id} className="home-venue-card">
+      <Link to={`/venues/${venue.id}`}>
+        <div className="home-venue-image-container">
+          <img
+            src={venue.media[0]?.url || "https://via.placeholder.com/150"}
+            alt={venue.media[0]?.alt || "Venue Image"}
+            className="home-venue-image"
+          />
         </div>
+
+
+{/*  */}
+        <div className="home-venue-card-details">
+  <div className="home-venue-title-and-rating">
+    <h3>{venue.name}</h3>
+
+    <div className="home-venue-star-and-venue-rating">
+    <p className="home-rock"><i className="fas fa-star"></i>{venue.rating}</p>
+  </div>
+  </div>
+  
+
+
+  <div className="home-venue-amenities">
+
+{venue.maxGuests && (
+  <div className="venue-max-guests" title="Maximum Guests">
+    <i className="fa-solid fa-user"></i>
+    <p>{venue.maxGuests}</p>
+  </div>
+)}
+
+{venue.meta?.parking && (
+  <div className="venue-parking" title="Parking Available">
+    <i className="fa-solid fa-square-parking"></i>
+    <p>Parking</p>
+  </div>
+)}
+
+{venue.meta?.breakfast && (
+  <div className="venue-breakfast" title="Breakfast Included">
+    <i className="fa-solid fa-utensils"></i>
+    <p>Breakfast</p>
+  </div>
+)}
+
+{venue.meta?.pets && (
+  <div className="venue-pets" title="Pets Allowed">
+    <i className="fa-solid fa-paw"></i>
+    <p>Pets Allowed</p>
+  </div>
+)}
+
+</div>
+
+  
+  <div className="home-venue-price-wrapper">
+
+    <p className="home-venue-price">{venue.price} NOK/night</p>
+  </div>
+</div>
+
+      </Link>
+    </div>
+  ))}
+</div>
+
       </div>
     </>
   );

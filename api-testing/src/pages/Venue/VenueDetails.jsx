@@ -46,11 +46,11 @@ const VenueDetails = () => {
 
       {/* Main image with "View All Images" button */}
       {Info.media && Info.media.length > 0 && (
-        <div className="main-image-container">
+        <div className="main-image-container2">
           <img
             src={Info.media[0].url}
             alt={Info.media[0].alt || "Main Venue Image"}
-            className="main-image"
+            className="main-image2"
           />
           {Info.media.length > 1 && (
             <button className="view-all-button" onClick={() => setShowGallery(true)}>
