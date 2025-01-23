@@ -17,7 +17,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px; /* Adjust padding as needed */
+  padding: 32px; /* Adjust padding as needed */
   color: white; /* For better visibility on dark backgrounds */
 }
 
