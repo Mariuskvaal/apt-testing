@@ -8,6 +8,7 @@ import VenueDetails from "./pages/Venue/VenueDetails"; // Import the new VenueDe
 import CreateVenuePage from "./components/CreateVenuePopup/CreateVenuePage";
 import UpdateVenuePage from "./components/UpdateVenuePage/UpdateVenuePage";
 import MyVenuesPage from "./components/MyVenuesPage/MyVenuesPage";
+import SearchResultsPage from "./pages/SearchResultsPage.jsx/SearchResultsPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/create-venue" element={<CreateVenuePage />} />
         <Route path="/update-venue/:venueId" element={<UpdateVenuePage />} />
         <Route path="/my-venues" element={<MyVenuesPage />} />
+        <Route path="/search-results" element={<SearchResultsPage />} />
       </Routes>
     </Router>
   );

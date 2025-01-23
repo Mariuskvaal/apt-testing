@@ -3,14 +3,23 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  background-color: #f9f9f9; /* Subtle background color */
+}
+
+.main-image-container2 img {
+  max-height: 50vh; /* Adjust image height for smaller screens */
 }
 
 .venue-details {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  background-color: white; /* Card-like look for the main section */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Venue Header */
 .venue-header {
   text-align: center;
   margin-bottom: 30px;
@@ -19,118 +28,30 @@ body {
 .venue-header h1 {
   font-size: 2.5rem;
   margin: 0;
+  color: #333;
 }
 
 .venue-header .venue-description {
   font-size: 1.2rem;
   color: #555;
+  margin-top: 10px;
 }
 
-/* Main image container */
-.main-image-container {
-  position: relative;
-  width: 100%;
-  margin-bottom: 30px;
-}
-
-.main-image-container img {
-  width: 100%;
-  max-height: 60vh;
-  border-radius: 10px;
-  object-fit: cover;
-}
-
-.view-all-button {
-  position: absolute;
-  bottom: 15px;
-  right: 15px;
-  background-color: #00bcd4;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 1rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease;
-}
-
-.view-all-button:hover {
-  background-color: #008ba3;
-}
-
-/* Modal styling */
-.image-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal-overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  z-index: 1;
-}
-
-.modal-content {
-  position: relative;
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  z-index: 2;
-  max-width: 90%;
-  max-height: 80%;
-  overflow-y: auto;
-}
-
-.modal-content .close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  color: #333;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 3;
-}
-
-.modal-content .modal-images {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 20px;
-}
-
-.modal-content .modal-images img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  object-fit: cover;
-}
-
+/* Details Grid */
 .venue-details-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 20px;
+  margin-top: 20px;
 }
 
 .venue-info,
 .venue-location,
 .venue-amenities {
-  background: #f9f9f9;
+  background-color: #fff;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .venue-info h2,
@@ -149,4 +70,112 @@ body {
   margin: 10px 0;
   font-size: 1rem;
   color: #333;
+}
+
+.venue-amenities p {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between icons and text */
+}
+
+.venue-amenities i {
+  color: #00bcd4;
+  font-size: 1.2rem;
+}
+
+/* Booking Calendar */
+.booking-calendar {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.booking-calendar h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #00bcd4;
+  padding-bottom: 10px;
+}
+
+.booking-calendar .calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr); /* 7 columns for days of the week */
+  gap: 5px;
+  text-align: center;
+}
+
+.booking-calendar .day {
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  color: #333;
+  font-size: 1rem;
+}
+
+.booking-calendar .day.booked {
+  background-color: #f08080; /* Highlight booked dates */
+  color: white;
+}
+
+/* Booking Form */
+.booking-form {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.booking-form h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #00bcd4;
+  padding-bottom: 10px;
+}
+
+.booking-form label {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  display: block;
+  color: #333;
+}
+
+.booking-form input,
+.booking-form select,
+.booking-form button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.booking-form button {
+  background-color: #00bcd4;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.booking-form button:hover {
+  background-color: #008ba3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .venue-details-grid {
+    grid-template-columns: 1fr; /* Single column layout for small screens */
+  }
+
+  .main-image-container2 img {
+    max-height: 50vh; /* Adjust image height for smaller screens */
+  }
+
+  .view-all-button {
+    font-size: 0.9rem; /* Smaller button text */
+  }
 }

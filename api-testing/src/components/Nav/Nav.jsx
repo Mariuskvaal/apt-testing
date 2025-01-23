@@ -57,7 +57,7 @@ const Navbar = () => {
 
   return (
     <nav className="navbar">
-      <div className="navbar-logo">MyLogo</div>
+      <div className="navbar-logo">Holidaze</div>
       <button className="navbar-toggle" onClick={toggleMenu}>
         {isMenuOpen ? "X" : "☰"}
       </button>
