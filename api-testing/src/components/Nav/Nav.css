@@ -8,6 +8,7 @@ body {
 
 /* Navbar Styles */
 .navbar {
+  background-color: black;
   position: absolute; /* Makes the navbar overlay other elements */
   top: 0;
   left: 0;
@@ -17,7 +18,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px; /* Adjust padding as needed */
+  padding: 32px; /* Adjust padding as needed */
   color: white; /* For better visibility on dark backgrounds */
 }
 

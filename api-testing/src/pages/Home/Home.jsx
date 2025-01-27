@@ -151,15 +151,16 @@ const Home = () => {
   <div className="home-venue-price-wrapper">
 
     <p className="home-venue-price">{venue.price} NOK/night</p>
-  </div>
+    
 </div>
+</div>
+
 
       </Link>
     </div>
   ))}
 </div>
-
-      </div>
+</div>
     </>
   );
 };

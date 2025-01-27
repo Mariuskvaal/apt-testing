@@ -2,12 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SearchBar.css";
 
-
-
-
 const SearchBar = () => {
     const [searchQuery, setSearchQuery] = useState("");
-
     const navigate = useNavigate();
 
     const handleSearchSubmit = () => {
@@ -37,15 +33,17 @@ const SearchBar = () => {
                     className="hero-search-input"
                 />
                 <button type="submit" className="hero-search-button">
-    <i className="fas fa-search"></i> {/* Font Awesome search icon */}
-</button>
-
+                    <i className="fas fa-search"></i> {/* Font Awesome search icon */}
+                </button>
             </form>
         </div>
     );
 };
 
 export default SearchBar;
+
+
+
 
 
 
