@@ -71,6 +71,12 @@ const Register = () => {
       {/* Navigation Bar */}
       <Navbar />
 
+      <div className="register-page-wrapper">
+
+
+
+
+
       {/* Form Section */}
       <div className="register-page">
         <h1>Register</h1>
@@ -128,6 +134,8 @@ const Register = () => {
         {/* Display Message */}
         {message && <p className="message">{message}</p>}
       </div>
+      </div>
+
     </>
   );
 };

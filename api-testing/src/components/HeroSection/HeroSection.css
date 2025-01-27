@@ -6,7 +6,7 @@
 
 .hero-section {
     position: relative;
-    background-image: url('../../Images/Trehytte\ i\ vinter.jpg'); /* Replace with your image URL */
+    background-image: url('../../../public/Images/Trehytte_i_vinter.jpg'); /* Replace with your image URL */
     background-size: cover;
     background-position: center;
     height: 100vh; /* Adjust height as needed */
