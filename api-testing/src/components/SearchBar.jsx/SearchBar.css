@@ -63,17 +63,15 @@
     flex-direction: column;
     justify-content: flex-end; /* Moves content to the bottom */
     align-items: center;
-    padding-bottom: 20px; /* Adds spacing from the bottom */
   }
 
 
   .hero-search-container {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
     margin-top: 0rem;
     width: 100%;
-    padding-bottom: 2rem;
+    padding-bottom: 10vh;
   }
   
   .hero-search-bar {
