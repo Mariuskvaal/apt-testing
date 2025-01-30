@@ -82,17 +82,15 @@ body {
   border-radius: 5px;
 }
 
-/* Responsive Navbar */
 .navbar-toggle {
   display: none;
-  font-size: 1.5rem;
+  font-size: 48px;
   color: white;
   background: none;
   border: none;
   cursor: pointer;
 }
 
-/* Profile Icon Styling */
 .icon-button {
   background: none;
   border: none;
@@ -101,7 +99,7 @@ body {
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease-in-out;
-  font-size: 1.5rem; /* Adjust icon size */
+  font-size: 1.5rem;
   padding: 10px 15px;
   text-decoration: none;
   color: #fff;
@@ -109,11 +107,10 @@ body {
   transition: background-color 0.3s ease;
 }
 
-/* Default profile icon color */
 .icon-button svg {
   color: white;
-  width: 28px; /* Adjust width */
-  height: 28px; /* Adjust height */
+  width: 28px; 
+  height: 28px; 
 }
 
 @media (max-width: 768px) {
