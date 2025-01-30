@@ -1,18 +1,13 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate for redirection
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "../Register/Register.css";
 import Navbar from "../../components/Nav/Nav";
 
 const Login = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [message, setMessage] = useState("");
-  const navigate = useNavigate(); // Initialize useNavigate
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,10 +16,9 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage(""); // Reset message state
+    setMessage("");
 
     try {
-      // Login API Call
       const response = await axios.post(
         "https://v2.api.noroff.dev/auth/login",
         formData,
@@ -36,18 +30,13 @@ const Login = () => {
       );
 
       console.log("Login Response:", response.data);
-
-      // Extract response data
-      const { accessToken, name, venueManager } = response.data.data;
-
-      // Save response data in localStorage
+      const { accessToken, name } = response.data.data;
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("username", name);
 
-      // Fetch API Key (if required)
       const apiKeyResponse = await axios.post(
         "https://v2.api.noroff.dev/auth/create-api-key",
-        {}, // Empty body
+        {},
         {
           headers: {
             Authorization: `Bearer ${accessToken}`,
@@ -56,9 +45,8 @@ const Login = () => {
       );
 
       const apiKey = apiKeyResponse.data.data.key;
-      localStorage.setItem("apiKey", apiKey); // Save API key in localStorage
+      localStorage.setItem("apiKey", apiKey);
 
-      // Redirect to profile page
       navigate(`/profile/${name}`);
     } catch (error) {
       setMessage("Login failed. Please try again.");
@@ -68,44 +56,50 @@ const Login = () => {
 
   return (
     <>
-      {/* Navigation Bar */}
       <Navbar />
+      <div className="register-page-wrapper">
+        <div className="register-page">
+          <h1>Login</h1>
+          <form className="register-form" onSubmit={handleSubmit}>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Email"
+              required
+            />
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+              placeholder="Password"
+              required
+            />
+            <button type="submit">Login</button>
+          </form>
 
-      {/* Login Form */}
-      <div className="login-page">
-        <h1>Login</h1>
-        <form className="login-form" onSubmit={handleSubmit}>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Email"
-            required
-          />
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="Password"
-            required
-          />
-          <button type="submit">Login</button>
-        </form>
+          {message && <p className="message">{message}</p>}
 
-        {/* Message */}
-        {message && <p className="message">{message}</p>}
+          {/* ✅ Corrected Register Link */}
+          <p className="register-page-footer">
+            Don't have an account? <Link to="/register">Register here</Link>.
+          </p>
+        </div>
       </div>
     </>
   );
 };
 
 export default Login;
+
+
+
 
 
 
