@@ -56,12 +56,24 @@
 }
 
 @media (max-width: 1024px) {
+
+  .hero-section {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Moves content to the bottom */
+    align-items: center;
+    padding-bottom: 20px; /* Adds spacing from the bottom */
+  }
+
+
   .hero-search-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    margin-top: 2rem;
-    width: 100vh;
+    margin-top: 0rem;
+    width: 100%;
+    padding-bottom: 2rem;
   }
   
   .hero-search-bar {
@@ -74,5 +86,7 @@
     margin-bottom: 0rem;
     width: 100%;
   }
+
+
 }
   
