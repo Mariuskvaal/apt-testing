@@ -4,43 +4,58 @@ body {
   font-family: Arial, sans-serif;
 }
 
-
-
-/* Navbar Styles */
+/* Default Navbar Styling */
 .navbar {
-  background-color: black;
-  position: absolute; /* Makes the navbar overlay other elements */
-  top: 0;
-  left: 0;
-  width: 100%; /* Make it span the full width */
-  z-index: 10; /* Ensure it appears on top of other elements */
-  background: transparent; /* Optional: Make it transparent or semi-transparent */
+  width: 100%;
+  z-index: 10; /* Ensure it appears on top */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 32px; /* Adjust padding as needed */
-  color: white; /* For better visibility on dark backgrounds */
+  padding: 32px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Navbar when on Home, Login, Register (absolute positioning) */
+.absolute-navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+  color: white;
+}
+
+/* Navbar when on all other pages (unset positioning) */
+/* Navbar for all other pages (Profile, Venue Details, etc.) */
+.unset-navbar {
+  position: unset;
+  background-color: #000000; /* White background */
+  color: rgb(255, 255, 255); /* Black text */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Adjust navbar links color */
+.unset-navbar .navbar-links li a {
+  color: rgb(255, 255, 255); /* Ensure links are visible */
+  font-weight: 400;
+}
+
+.unset-navbar .icon-button svg {
+  color: rgb(255, 255, 255); /* Change profile icon color */
 }
 
 
-
+/* Navbar Logo */
 .navbar-logo {
   font-size: 32px;
   font-weight: bold;
-}
-
-.navbar-toggle {
-  display: none;
-  font-size: 1.5rem;
-  color: white;
-  background: none;
-  border: none;
   cursor: pointer;
 }
 
+/* Navbar Links */
 .navbar-links {
   list-style: none;
   display: flex;
+  align-items: center;
   margin: 0;
   padding: 0;
 }
@@ -50,7 +65,7 @@ body {
 }
 
 .navbar-links li a {
-  padding: 10px 15px; /* Internal spacing for clickable area */
+  padding: 10px 15px;
   text-decoration: none;
   color: #fff;
   font-size: 20px;
@@ -58,94 +73,49 @@ body {
 }
 
 .navbar-links li a:hover {
-  background-color: rgba(255, 255, 255, 0.2); /* Add hover effect */
+  background-color: rgba(255, 255, 255, 0.2);
   border-radius: 5px;
 }
 
-/* Icon Buttons */
+.icon-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 5px;
+}
+
+/* Responsive Navbar */
+.navbar-toggle {
+  display: none;
+  font-size: 1.5rem;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Profile Icon Styling */
 .icon-button {
   background: none;
   border: none;
-  color: white;
   cursor: pointer;
-  font-size: 1rem;
-  padding: 0 5px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease-in-out;
+  font-size: 1.5rem; /* Adjust icon size */
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 20px;
+  transition: background-color 0.3s ease;
 }
 
-.icon-button:hover {
-  color: #00bcd4;
-}
-
-/* Search Container */
-.search-container {
-  position: absolute;
-  top: 100%; /* Position it below the navbar */
-  left: 0;
-  width: 100%;
-  background-color: #444;
-  z-index: 1000;
-  padding: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Search Bar */
-.search-bar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 10px;
-}
-
-.search-bar input {
-  padding: 8px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  width: 80%; /* Adjust width as needed */
-}
-
-.search-bar button {
-  padding: 8px 15px;
-  font-size: 1rem;
-  background-color: #00bcd4;
+/* Default profile icon color */
+.icon-button svg {
   color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 3px;
+  width: 28px; /* Adjust width */
+  height: 28px; /* Adjust height */
 }
 
-.search-bar button:hover {
-  background-color: #0097a7;
-}
-
-/* Search Results */
-.search-results {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  max-height: 200px; /* Set a max height and make it scrollable */
-  overflow-y: auto;
-}
-
-.search-result-item {
-  padding: 10px;
-  background-color: #555;
-  color: white;
-  cursor: pointer;
-  border-radius: 3px;
-  margin-bottom: 5px;
-  transition: background-color 0.2s ease;
-}
-
-.search-result-item:hover {
-  background-color: #666;
-}
-
-/* Responsive Styles */
 @media (max-width: 768px) {
   .navbar-toggle {
     display: block;
@@ -171,42 +141,11 @@ body {
   .navbar-links li {
     margin: 10px 0;
   }
-
-  .search-bar input {
-    width: 70%; /* Adjust width for smaller screens */
-  }
 }
 
 
 
 
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .navbar-toggle {
-    display: block;
-  }
-
-  .navbar-links {
-    display: none;
-    flex-direction: column;
-    background-color: #333;
-    position: absolute;
-    top: 50px;
-    right: 20px;
-    width: 150px;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-  }
-
-  .navbar-links.active {
-    display: flex;
-  }
-
-  .navbar-links li {
-    margin: 10px 0;
-    text-align: center;
-  }
-}
 
 
   
