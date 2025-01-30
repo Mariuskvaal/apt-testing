@@ -4,7 +4,6 @@ import Navbar from "../../components/Nav/Nav";
 import axios from "axios";
 import "./Home.css";
 import HeroSection from "../../components/HeroSection/HeroSection";
-import SearchBar from "../../components/SearchBar.jsx/SearchBar";
 
 const Home = () => {
   const [venues, setVenues] = useState([]); // State for venue data

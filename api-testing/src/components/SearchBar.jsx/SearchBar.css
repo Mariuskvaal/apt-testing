@@ -55,4 +55,24 @@
   font-size: 1rem;
 }
 
+@media (max-width: 1024px) {
+  .hero-search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+    width: 100vh;
+  }
+  
+  .hero-search-bar {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 0.5rem 0.5rem;
+    border-radius: 40px;
+    box-shadow: 10px 10px 10px rgb(109 75 75);
+    margin-bottom: 0rem;
+    width: 100%;
+  }
+}
   

@@ -1,18 +1,48 @@
-.Home-Page-Hero{
+.Home-Page-Hero {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
-
+/* Hero Section Styling */
 .hero-section {
-    position: relative;
-    background-image: url('../../../public/Images/Trehytte_i_vinter.jpg'); /* Replace with your image URL */
-    background-size: cover;
-    background-position: center;
-    height: 100vh; /* Adjust height as needed */
-    display: flex;
-    justify-content: center;
-    align-items: self-end;
-    color: #fff;
+  position: relative;
+  background-image: url('../../../public/Images/Trehytte_i_vinter.jpg'); /* Replace with your image URL */
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh; /* Ensures full height but adapts better */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  color: #fff;
+  padding: 2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hero-section {
+    padding: 1.5rem;
+    align-items: center;
   }
+}
+
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 1rem;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .Home-Page-Hero {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding: 0.5rem;
+    min-height: 80vh; /* Reduce height on very small screens */
+  }
+}
+
  
