@@ -105,7 +105,7 @@ const Home = () => {
 {/*  */}
         <div className="home-venue-card-details">
   <div className="home-venue-title-and-rating">
-    <h3>{venue.name}</h3>
+    <h3 className="home-h3">{venue.name}</h3>
 
     <div className="home-venue-star-and-venue-rating">
     <p className="home-rock"><i className="fas fa-star"></i>{venue.rating}</p>
@@ -119,7 +119,7 @@ const Home = () => {
 {venue.maxGuests && (
   <div className="venue-max-guests" title="Maximum Guests">
     <i className="fa-solid fa-user"></i>
-    <p>{venue.maxGuests}</p>
+    <p className="maxguestsnumber">{venue.maxGuests}</p>
   </div>
 )}
 

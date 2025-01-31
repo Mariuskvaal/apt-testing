@@ -1,185 +1,193 @@
-.home-home-page {
+/* Venue Grid - Responsive */
+.home-venue-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Adjust grid layout */
+  gap: 20px;
+  padding: 24px 20px; /* Adjust padding for better responsiveness */
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.maxguestsnumber {
   text-align: center;
+}
+
+/* Venue Card */
+.home-venue-card {
+  cursor: pointer;
+  text-decoration: none;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+}
+
+.home-venue-card:hover {
+  transform: scale(1.02); /* Slight scale effect on hover */
+}
+
+/* Venue Image */
+.home-venue-image-container {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
+}
+
+.home-venue-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure image fits properly */
+  transition: transform 0.3s ease-in-out;
+}
+
+.home-venue-card:hover .home-venue-image {
+  transform: scale(1.05);
+}
+
+/* Venue Details */
+.home-venue-card-details {
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+}
+
+/* Venue Title & Rating */
+.home-venue-title-and-rating {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  flex-wrap: wrap;
+  overflow: hidden;
+  word-break: break-word;
+}
+
+.home-h3 {
+  font-size: 1.4rem;
+  font-weight: bold;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 🎨 Styling for Filter Dropdown */
+.home-sorting-container {
+  display: flex;
   justify-content: center;
-
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.home-home-page-wrapper{
-  max-width: 1128px;
+label {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
 }
-  
-  h1 {
-    font-size: 64px;
-    padding: 12px;
-  }
-  
-  .home-venue-image-container {
-    position: relative;
-  }
 
-  label, #sort, #order {
-    padding: 8px;
-    border-radius: 40px;
-  }
-  
-  .home-venue-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-  
-  .home-sorting-container {
-    display: flex;
-    justify-content: center;
-    position: sticky;
-    z-index: 10;
-    margin-bottom: 20px;
-    align-content: center;
-    gap: 10px;
-  }
+#sort, #order {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
 
-  label{
-    align-self: center;
-  }
-  
-  .sorting-container select {
-    padding: 5px 10px;
-    font-size: 1rem;
-    min-width: 150px;
-    border-radius: 40px;
-  }
-  
+#sort:hover, #order:hover {
+  background-color: #e0e0e0;
+}
+
+#sort:focus, #order:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Remove all text-decoration from links */
+.home-venue-card a {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+/* Rating Section */
+.home-venue-star-and-venue-rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.home-venue-star-and-venue-rating i {
+  color: gold; /* Highlight the star */
+}
+
+/* Amenities Section */
+.home-venue-amenities {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.venue-amenities div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* Price Section */
+.home-venue-price-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: black;
+  margin-top: 10px;
+}
+
+.fa-solid, .fas{
+  display: flex;
+  justify-content: center;
+}
+
+.home-rock {
+  display: flex;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .home-venue-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 2fr)); /* Responsive grid */
-    gap: 40px; /* Spacing between cards */
-    padding: 24px 64px; /* Padding around the grid */
-    border: none;
-  }
-  
-  .home-venue-card {
-    cursor: pointer;
-    text-decoration: none; /* Remove link decorations */
-    border-radius: 40px;
-  }
-  
-  .home-venue-image {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 20px;
-    border: none;
-  }
-  
-  .home-venue-card-details {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    border: none;
-    color: black;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); /* Adjust for smaller screens */
+    gap: 15px;
   }
 
-  .home-venue-title-and-rating{
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .fas.fa-star{
-    color: black;
-  }
-
-  .home-rock{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .fas.fa-star, .home-rock {
-    color: #555555;
-  }
-
-  
-  .venue-card h3, .home-venue-price {
+  .home-h3 {
     font-size: 1.2rem;
-    font-weight: bold;
-    margin: 0;
-    color: black;
   }
 
-  .home-venue-price-wrapper{
-    display: flex;
-
-  }
-  
-  .venue-price {
-    font-weight: bold;
-    color: #000;
-  }
-  
-  .venue-rating {
-    color: #555;
-    font-size: 0.9rem;
+  .home-venue-image-container {
+    height: 180px; /* Adjust image height for smaller screens */
   }
 
-  a {
-    text-decoration: none;
-    border: none;
+  .home-venue-price-wrapper {
+    font-size: 1rem;
   }
+}
 
-  .home-venue-amenities {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px; /* Spacing between icons */
-    margin-top: 10px; /* Add spacing above */
-    color: #555; /* Icon color */
-    font-size: 1rem; /* Icon size */
-  }
-  
-  .venue-amenities i {
-    cursor: default;
-  }
-  .venue-amenities div {
-    position: relative; /* Needed for tooltip positioning */
-  }
-  
-  .venue-amenities div::after {
-    content: attr(title); /* Use the title attribute as content */
-    position: absolute;
-    bottom: 100%; /* Position tooltip above the icon */
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: rgba(0, 0, 0, 0.8);
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-size: 0.8rem;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease;
-  }
-  
-  .venue-amenities div:hover::after {
-    opacity: 5; /* Show tooltip on hover */
-  }
-  
-  @media (max-width: 1024px) {
-
-
-    .home-venue-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 2fr)); /* Responsive grid */
-      gap: 40px; /* Spacing between cards */
-      padding: 24px 64px; /* Padding around the grid */
-      border: none;
-    }
-    
-
-
-  
-  }
   
   
   
