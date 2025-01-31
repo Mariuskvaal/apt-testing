@@ -22,13 +22,18 @@ body {
 /* Venue Header */
 .venue-header {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  padding: 0 15px;
 }
 
 .venue-header h1 {
-  font-size: 2.5rem;
+  font-size: 2.5rem; /* Default for large screens */
   margin: 0;
   color: #333;
+  word-wrap: break-word;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .venue-header .venue-description {
@@ -188,6 +193,7 @@ body {
   align-items: center;
   overflow: hidden;
   border-radius: 10px;
+  min-height: 600px;
 }
 
 .carousel-image {
@@ -227,6 +233,14 @@ body {
 @media (max-width: 768px) {
   .venue-details-grid {
     grid-template-columns: 1fr; /* Single column layout for small screens */
+  }
+
+  .venue-header h1 {
+    font-size: 1.8rem; /* Smaller font for mobile */
+    text-align: center;
+    white-space: normal; /* Allow text to wrap naturally */
+    word-break: break-word; /* Ensures long words break properly */
+    overflow: hidden;
   }
 
   .main-image-container2 img {
