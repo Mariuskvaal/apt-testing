@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import axios from "axios";
 import Navbar from "../../components/Nav/Nav";
 import "./CreateVenuePage.css";
+import { useNavigate } from "react-router-dom"; 
+
+
 
 const CreateVenuePage = () => {
+
+  const navigate = useNavigate(); 
+  
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -23,6 +29,7 @@ const CreateVenuePage = () => {
     },
   });
   const [message, setMessage] = useState("");
+  const [countdown, setCountdown] = useState(null); // ✅ State for countdown timer
   const accessToken = localStorage.getItem("accessToken");
   const apiKey = localStorage.getItem("apiKey");
 
@@ -51,11 +58,16 @@ const CreateVenuePage = () => {
   // Handle location changes
   const handleLocationChange = (e) => {
     const { name, value } = e.target;
+  
     setFormData({
       ...formData,
-      location: { ...formData.location, [name]: value },
+      location: {
+        ...formData.location,
+        [name]: name === "lat" || name === "lng" ? parseFloat(value) || 0 : value,
+      },
     });
   };
+  
 
   // Add a new media input
   const addMediaInput = () => {
@@ -85,13 +97,27 @@ const CreateVenuePage = () => {
           },
         }
       );
+  
       setMessage("Venue created successfully!");
+      setCountdown(3); // ✅ Start countdown from 3 seconds
       console.log("Venue Created:", response.data);
+
+      // Start countdown effect
+      const countdownInterval = setInterval(() => {
+        setCountdown((prevCountdown) => {
+          if (prevCountdown === 1) {
+            clearInterval(countdownInterval); // Stop the countdown
+            navigate(`/profile/${localStorage.getItem("username")}`); // Redirect after countdown ends
+          }
+          return prevCountdown - 1;
+        });
+      }, 1000);
     } catch (error) {
       console.error("Error creating venue:", error.response?.data || error);
       setMessage("Failed to create venue. Please try again.");
     }
   };
+
 
   return (
     <>
@@ -287,7 +313,7 @@ const CreateVenuePage = () => {
             step="0.0001"
           />
 
-          {message && <p className="message">{message}</p>}
+{message && <p className="message">{message} {countdown !== null && <span> Redirecting in {countdown}...</span>}</p>} {/* ✅ Show countdown */}
 
           <button type="submit">Create Venue</button>
         </form>

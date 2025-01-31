@@ -1,5 +1,6 @@
 .register-page-wrapper {
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
   display: flex;
   justify-content: center; /* Moves the form container to the right */
   align-items: center;
@@ -128,4 +129,17 @@
 
 .register-page-footer a:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .register-page-wrapper {
+    padding: 80px 20px; /* Adjust spacing for mobile */
+    padding-top: 100px;
+    height: auto;
+  }
+
+  .register-page {
+    width: 100%;
+    max-width: 400px;
+  }
 }

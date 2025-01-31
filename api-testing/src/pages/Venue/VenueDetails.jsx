@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../../components/Nav/Nav";
-import "./VenueDetails.css"; // Import the new CSS file
+import "./VenueDetails.css";
 import BookingForm from "../../components/BookingForm/BookingForm";
-import BookingCalendar from "../../components/BookingCalendar/BookingCalendar"; //
+import BookingCalendar from "../../components/BookingCalendar/BookingCalendar";
 
 const VenueDetails = () => {
-  const { id } = useParams(); // Get the venue ID from the URL
-  const [venue, setVenue] = useState(null); // State to store venue data
-  const [error, setError] = useState(null); // State for error handling
-  const [showGallery, setShowGallery] = useState(false); // State to handle modal visibility
+  const { id } = useParams();
+  const [venue, setVenue] = useState(null);
+  const [error, setError] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0); // Track current image in carousel
 
   useEffect(() => {
     const fetchVenue = async () => {
@@ -18,7 +18,7 @@ const VenueDetails = () => {
         const response = await axios.get(
           `https://v2.api.noroff.dev/holidaze/venues/${id}?_bookings=true`
         );
-        setVenue(response.data); // Store the venue data, including bookings
+        setVenue(response.data);
       } catch (error) {
         setError("Could not fetch venue details. Please try again later.");
         console.error("Error fetching venue details:", error);
@@ -29,56 +29,60 @@ const VenueDetails = () => {
   }, [id]);
 
   if (error) {
-    return <p>{error}</p>; // Display error message if the API call fails
+    return <p>{error}</p>;
   }
 
   if (!venue) {
-    return <p>Loading...</p>; // Display loading message while data is being fetched
+    return <p>Loading...</p>;
   }
 
-  const Info = venue.data; // Correctly access the data property of the venue
+  const Info = venue.data;
+  const media = Info.media || [];
+
+  // Function to move to the next image
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % media.length);
+  };
+
+  // Function to move to the previous image
+  const prevImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? media.length - 1 : prevIndex - 1
+    );
+  };
 
   return (
     <>
       <Navbar />
 
-      {console.log(Info)}
-
-      {/* Main image with "View All Images" button */}
-      {Info.media && Info.media.length > 0 && (
-        <div className="main-image-container2">
-          <img
-            src={Info.media[0].url}
-            alt={Info.media[0].alt || "Main Venue Image"}
-            className="main-image2"
-          />
-          {Info.media.length > 1 && (
-            <button className="view-all-button" onClick={() => setShowGallery(true)}>
-              View All Images
-            </button>
+      {/* Display Image Carousel */}
+      {media.length > 0 && (
+        <div className="carousel-container">
+          {/* Carousel Arrows */}
+          {media.length > 1 && (
+            <>
+              <button className="carousel-arrow left-arrow" onClick={prevImage}>
+                &#9664;
+              </button>
+              <button className="carousel-arrow right-arrow" onClick={nextImage}>
+                &#9654;
+              </button>
+            </>
           )}
-        </div>
-      )}
 
-      {/* Modal for all images */}
-      {showGallery && (
-        <div className="image-modal">
-          <div className="modal-overlay" onClick={() => setShowGallery(false)}></div>
-          <div className="modal-content">
-            <button className="close-button" onClick={() => setShowGallery(false)}>
-              &times;
-            </button>
-            <div className="modal-images">
-              {Info.media.map((image, index) => (
-                <img
-                  key={index}
-                  src={image.url}
-                  alt={image.alt || `Venue Image ${index + 1}`}
-                  className="modal-image"
-                />
-              ))}
+          {/* Display Current Image */}
+          <img
+            src={media[currentImageIndex].url}
+            alt={media[currentImageIndex].alt || `Venue Image ${currentImageIndex + 1}`}
+            className="carousel-image"
+          />
+
+          {/* Image Counter */}
+          {media.length > 1 && (
+            <div className="image-counter">
+              {currentImageIndex + 1} / {media.length}
             </div>
-          </div>
+          )}
         </div>
       )}
 
@@ -115,9 +119,6 @@ const VenueDetails = () => {
         </div>
 
         <BookingCalendar bookings={Info.bookings || []} />
-
-
-        {/* Booking Form */}
         <BookingForm venueId={id} maxGuests={Info.maxGuests} />
       </div>
     </>
@@ -125,6 +126,9 @@ const VenueDetails = () => {
 };
 
 export default VenueDetails;
+
+
+
 
 
 

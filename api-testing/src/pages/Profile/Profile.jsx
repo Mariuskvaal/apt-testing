@@ -135,10 +135,14 @@ const Profile = () => {
 
             {/* Conditional Rendering for Venue Manager */}
             {venueManager && (
-              <div>
-                <h3>Venue Manager Options</h3>
-                <button onClick={() => navigate("/create-venue")}>Create Venue</button>
-                <button onClick={() => navigate(`/my-venues`)}>View Venues I Have Created</button>
+  <div className="venue-manager-buttons">
+    <h3>Venue Manager Options</h3>
+    <button className="create-venue-button" onClick={() => navigate("/create-venue")}>
+      Create Venue
+    </button>
+    <button className="view-venues-button" onClick={() => navigate(`/my-venues`)}>
+      View Venues I Have Created
+    </button>
               </div>
             )}
           </div>

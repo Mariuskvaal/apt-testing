@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom"; // Import useLocation
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./Nav.css";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const location = useLocation(); // Get the current route
+  const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const username = localStorage.getItem("username");
 
@@ -14,8 +14,13 @@ const Navbar = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
   const BackToHomeWhenClickingLogo = () => {
     navigate("/");
+    closeMenu();
   };
 
   const handleProfileClick = () => {
@@ -24,27 +29,25 @@ const Navbar = () => {
     } else {
       navigate("/login");
     }
+    closeMenu();
   };
 
-  // Define routes that should have position absolute
   const absolutePositionRoutes = ["/", "/login", "/register"];
-
-  // Check if the current route should have position absolute
   const isAbsolute = absolutePositionRoutes.includes(location.pathname);
 
   return (
     <nav className={`navbar ${isAbsolute ? "absolute-navbar" : "unset-navbar"}`}>
       <div onClick={BackToHomeWhenClickingLogo} className="navbar-logo">Holidaze</div>
+      
+      {/* Toggle Button */}
       <button className="navbar-toggle" onClick={toggleMenu}>
         {isMenuOpen ? "X" : "☰"}
       </button>
+
+      {/* Overlay Navigation */}
       <ul className={`navbar-links ${isMenuOpen ? "active" : ""}`}>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/login">Login</Link>
-        </li>
+        <li><Link to="/" onClick={closeMenu}>Home</Link></li>
+        <li><Link to="/login" onClick={closeMenu}>Login</Link></li>
         <li>
           <button onClick={handleProfileClick} className="icon-button">
             <FontAwesomeIcon icon={faUser} size="lg" />
@@ -56,6 +59,7 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
 
 
 
