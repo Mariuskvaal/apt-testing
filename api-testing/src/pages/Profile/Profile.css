@@ -195,6 +195,50 @@ h1 {
   font-size: 14px;
 }
 
+/* Venue Manager Buttons */
+.create-venue-button,
+.view-venues-button {
+  padding: 10px 20px;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 10px 5px;
+  text-align: center;
+  width: 100%;
+  max-width: 250px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.create-venue-button {
+  background-color: #4caf50; /* Green */
+}
+
+.create-venue-button:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.view-venues-button {
+  background-color: #008cba; /* Blue */
+}
+
+.view-venues-button:hover {
+  background-color: #007bb5;
+  transform: scale(1.05);
+}
+
+/* Center the buttons */
+.venue-manager-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+
   
   
   

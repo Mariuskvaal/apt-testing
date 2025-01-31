@@ -113,32 +113,77 @@ body {
   height: 28px; 
 }
 
+/* Mobile Navigation */
 @media (max-width: 768px) {
   .navbar-toggle {
     display: block;
+    z-index: 15;
+    position: relative;
   }
 
   .navbar-links {
-    display: none;
+    display: flex;
     flex-direction: column;
-    background-color: #333;
-    position: absolute;
-    top: 50px;
-    right: 20px;
-    width: 150px;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9); /* Dark background */
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 10;
   }
 
   .navbar-links.active {
-    display: flex;
-    align-items: center;
+    transform: translateX(0);
   }
 
   .navbar-links li {
-    margin: 10px 0;
+    margin: 20px 0;
+  }
+
+  .navbar-links li a {
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    transition: color 0.3s ease;
+  }
+
+  .navbar-links li a:hover {
+    color: #f44336;
+  }
+
+  .icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+    font-size: 1.5rem;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .icon-button svg {
+    color: white;
+    width: 28px; 
+    height: 28px; 
+  }
+
+  .icon-button svg:hover {
+    color: #f44336;
   }
 }
+
 
 
 
