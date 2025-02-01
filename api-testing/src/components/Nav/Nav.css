@@ -35,12 +35,12 @@ body {
 
 /* Adjust navbar links color */
 .unset-navbar .navbar-links li a {
-  color: rgb(0, 0, 0); /* Ensure links are visible */
+  color: rgb(255, 255, 255); /* Ensure links are visible */
   font-weight: 400;
 }
 
 .unset-navbar .icon-button svg {
-  color: rgb(0, 0, 0); /* Change profile icon color */
+  color: rgb(255, 255, 255); /* Change profile icon color */
 }
 
 
@@ -83,14 +83,22 @@ body {
 }
 
 .navbar-toggle {
-  display: none;
   font-size: 48px;
-  color: white;
   background: none;
   border: none;
   cursor: pointer;
+  transition: color 0.3s ease-in-out;
 }
 
+/* White toggle for homepage, login, and register */
+.absolute-navbar .navbar-toggle {
+  color: white;
+}
+
+/* Black toggle for all other pages */
+.unset-navbar .navbar-toggle {
+  color: black;
+}
 .icon-button {
   background: none;
   border: none;
@@ -127,10 +135,10 @@ body {
     align-items: center;
     justify-content: center;
     position: fixed;
-    top: 0;
+    top: 120px;
     left: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: rgba(0, 0, 0, 0.9); /* Dark background */
     transform: translateX(-100%);
     transition: transform 0.3s ease-in-out;

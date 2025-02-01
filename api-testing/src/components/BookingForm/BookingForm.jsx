@@ -19,7 +19,7 @@ const BookingForm = ({ venueId, maxGuests }) => {
     const apiKey = localStorage.getItem("apiKey");
 
     if (!accessToken || !apiKey) {
-      setError("Missing access token or API key. Please log in.");
+      setError("Please log in.");
       return;
     }
 
