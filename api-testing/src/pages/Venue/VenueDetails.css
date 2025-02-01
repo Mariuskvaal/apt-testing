@@ -236,6 +236,10 @@ body {
     grid-template-columns: 1fr; /* Single column layout for small screens */
   }
 
+  .carousel-container {
+    min-height: 300px;
+  }
+
   .venue-header h1 {
     font-size: 1.8rem; /* Smaller font for mobile */
     text-align: center;
