@@ -40,7 +40,11 @@ const Navbar = () => {
       <div onClick={BackToHomeWhenClickingLogo} className="navbar-logo">Holidaze</div>
       
       {/* Toggle Button */}
-      <button className="navbar-toggle" onClick={toggleMenu}>
+      {/* Toggle Button with Dynamic Color */}
+      <button 
+        className={`navbar-toggle ${isAbsolute ? "white-toggle" : "black-toggle"}`} 
+        onClick={toggleMenu}
+      >
         {isMenuOpen ? "X" : "☰"}
       </button>
 
