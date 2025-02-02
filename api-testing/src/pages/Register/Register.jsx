@@ -43,7 +43,6 @@ const Register = () => {
         }
       );
 
-      console.log("Registration Response:", response.data);
       setMessage("Registration successful!");
       localStorage.setItem("venueManager", formData.venueManager);
     } catch (error) {

@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../../components/Nav/Nav";
 import BookingsPopup from "../../components/Profile/BookingsPopup"; // Use combined file
-import CreateVenuePage from "../../components/CreateVenuePopup/CreateVenuePage"
 import "./Profile.css";
 
 const Profile = () => {
@@ -20,7 +19,6 @@ const Profile = () => {
 
   // Retrieve venueManager flag from localStorage
   const venueManager = JSON.parse(localStorage.getItem("venueManager")) || false;
-  console.log("Is Venue Manager:", venueManager);
   
   
 
