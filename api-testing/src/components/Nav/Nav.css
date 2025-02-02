@@ -130,6 +130,15 @@ body {
     position: relative;
   }
 
+  .unset-navbar .navbar-links li a {
+    color: rgb(255, 255, 255); /* Ensure links are visible */
+    font-weight: 400;
+  }
+
+  .unset-navbar .icon-button svg {
+    color: rgb(255, 255, 255); /* Change profile icon color */
+  }
+
   .navbar-links {
     display: flex;
     flex-direction: column;
