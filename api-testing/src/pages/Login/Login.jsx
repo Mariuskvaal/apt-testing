@@ -29,28 +29,45 @@ const Login = () => {
         }
       );
 
-      console.log("Login Response:", response.data);
+      console.log("✅ Login Response:", response.data);
       const { accessToken, name } = response.data.data;
+      
+      // Store token and username
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("username", name);
+      
+      console.log("🔹 Stored Token:", localStorage.getItem("accessToken"));
+      console.log("🔹 Stored Username:", localStorage.getItem("username"));
 
-      const apiKeyResponse = await axios.post(
-        "https://v2.api.noroff.dev/auth/create-api-key",
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
+      // Create API Key Request
+      try {
+        const apiKeyResponse = await axios.post(
+          "https://v2.api.noroff.dev/auth/create-api-key",
+          {},
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+
+        if (apiKeyResponse.data?.data?.key) {
+          const apiKey = apiKeyResponse.data.data.key;
+          localStorage.setItem("apiKey", apiKey);
+          console.log("🔹 API Key Stored:", apiKey);
+        } else {
+          console.error("⚠️ API Key request failed:", apiKeyResponse);
         }
-      );
+      } catch (apiKeyError) {
+        console.error("❌ Error creating API Key:", apiKeyError.response?.data || apiKeyError);
+      }
 
-      const apiKey = apiKeyResponse.data.data.key;
-      localStorage.setItem("apiKey", apiKey);
-
+      // Redirect to profile
       navigate(`/profile/${name}`);
+      
     } catch (error) {
       setMessage("Login failed. Please try again.");
-      console.error("Error during login:", error.response?.data || error);
+      console.error("❌ Error during login:", error.response?.data || error);
     }
   };
 
@@ -86,7 +103,6 @@ const Login = () => {
 
           {message && <p className="message">{message}</p>}
 
-          {/* ✅ Corrected Register Link */}
           <p className="register-page-footer">
             Don't have an account? <Link to="/register">Register here</Link>.
           </p>
@@ -97,6 +113,7 @@ const Login = () => {
 };
 
 export default Login;
+
 
 
 
