@@ -29,15 +29,13 @@ const Login = () => {
         }
       );
 
-      console.log("✅ Login Response:", response.data);
+
       const { accessToken, name } = response.data.data;
       
       // Store token and username
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("username", name);
-      
-      console.log("🔹 Stored Token:", localStorage.getItem("accessToken"));
-      console.log("🔹 Stored Username:", localStorage.getItem("username"));
+
 
       // Create API Key Request
       try {
@@ -54,7 +52,6 @@ const Login = () => {
         if (apiKeyResponse.data?.data?.key) {
           const apiKey = apiKeyResponse.data.data.key;
           localStorage.setItem("apiKey", apiKey);
-          console.log("🔹 API Key Stored:", apiKey);
         } else {
           console.error("⚠️ API Key request failed:", apiKeyResponse);
         }

@@ -16,11 +16,10 @@ const Home = () => {
     const fetchVenues = async () => {
       try {
         const response = await axios.get("https://v2.api.noroff.dev/holidaze/venues");
-        setVenues(response.data.data); // Store the venue data
+        setVenues(response.data.data); 
 
-        console.log(response.data.data);
 
-        setSortedVenues(response.data.data); // Display the default order from the server
+        setSortedVenues(response.data.data); 
       } catch (error) {
         console.error("Error fetching venues:", error);
       }
@@ -47,7 +46,7 @@ const Home = () => {
 
       setSortedVenues(sorted);
     } else {
-      // If no sorting criteria is selected, show venues as they came from the server
+
       setSortedVenues(venues);
     }
   }, [sortCriteria, sortOrder, venues]);
