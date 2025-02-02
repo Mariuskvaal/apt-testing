@@ -35,12 +35,12 @@ body {
 
 /* Adjust navbar links color */
 .unset-navbar .navbar-links li a {
-  color: rgb(255, 255, 255); /* Ensure links are visible */
+  color: rgb(0, 0, 0); /* Ensure links are visible */
   font-weight: 400;
 }
 
 .unset-navbar .icon-button svg {
-  color: rgb(255, 255, 255); /* Change profile icon color */
+  color: rgb(0, 0, 0); /* Change profile icon color */
 }
 
 
@@ -88,6 +88,7 @@ body {
   border: none;
   cursor: pointer;
   transition: color 0.3s ease-in-out;
+  display: none;
 }
 
 /* White toggle for homepage, login, and register */
