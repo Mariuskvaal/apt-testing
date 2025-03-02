@@ -1,27 +1,27 @@
 # Holidaze (Booking Website)
-![Ecommerce Store Front Page](../api-testing/public/Images/Holidaze-front-page-little-image.png)
+![Booking Website Front Page](../api-testing/public/Images/Holidaze-front-page-little-image.png)
 
 ## Overview
-This project is a React-based e-commerce store designed to provide a seamless shopping experience. The application features a variety of functionalities including product browsing, cart management, and a checkout process. It is built using modern web technologies and follows best practices for a responsive and user-friendly interface.
+Holidaze is a React-based booking website designed to provide a seamless experience for booking your next stay, similar to Airbnb and Booking.com. The application features various functionalities including browsing listings, managing bookings, and a streamlined booking process.
 
 ### Key Features
-- **Product Browsing:** Users can browse through a list of products fetched from an API.
-- **Product Details:** Detailed view of each product including images, descriptions, and reviews.
-- **Cart Management:** Users can add products to their cart, update quantities, and remove items.
-- **Checkout Process:** A streamlined checkout process with a success page upon completion.
-- **Contact Form:** A contact page with a form for users to reach out to the store.
-- **Search Functionality:** Users can search for products using a search bar in the navigation.
+- **Listing Browsing:** Users can browse through a list of properties fetched from an API.
+- **Property Details:** Detailed view of each property including images, descriptions, and reviews.
+- **Booking Management:** Users can book properties, view their bookings, and cancel if needed.
+- **Booking Process:** A streamlined booking process with a confirmation page upon completion.
+- **Contact Form:** A contact page with a form for users to reach out with inquiries.
+- **Search Functionality:** Users can search for properties using a search bar in the navigation.
 
 ### Code Stack
 - **React:** For building the user interface.
 - **React Router:** For client-side routing.
-- **Context API:** For state management of the shopping cart.
+- **Context API:** For state management of bookings.
 - **FontAwesome:** For icons.
 - **CSS:** For styling components and pages.
 
 ## Project Structure
-- **Components:** Reusable components such as Navbar, Footer, Product, and Cart.
-- **Pages:** Different pages of the application including HomePage, ProductPage, CheckoutPage, CheckoutSuccessPage, and ContactPage.
+- **Components:** Reusable components such as Navbar, Footer, Property, and Booking.
+- **Pages:** Different pages of the application including HomePage, PropertyPage, BookingPage, BookingConfirmationPage, and ContactPage.
 - **Styles:** CSS files for styling the components and pages.
 - **Assets:** Images and other static assets used in the project.
 
