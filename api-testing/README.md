@@ -1,5 +1,5 @@
 # semester-project-2-bootstrap
-![Ecommerce Store Front Page](../my-react-app/src/Components/Assets/image/Ecommerce-store-page.png)
+![Ecommerce Store Front Page](../api-testing/public/Images/Holidaze-front-page-little-image.png)
 
 ## Overview
 This project is a React-based e-commerce store designed to provide a seamless shopping experience. The application features a variety of functionalities including product browsing, cart management, and a checkout process. It is built using modern web technologies and follows best practices for a responsive and user-friendly interface.
