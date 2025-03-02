@@ -1,4 +1,4 @@
-# semester-project-2-bootstrap
+# Holidaze (Booking Website)
 ![Ecommerce Store Front Page](../api-testing/public/Images/Holidaze-front-page-little-image.png)
 
 ## Overview
